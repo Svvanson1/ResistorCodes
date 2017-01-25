@@ -60,4 +60,92 @@ public class DecodeResistorColors {
     	 
     	 return ohmString + ", " + tolerance;
     }
+    
+    public static String encodeResistorColors(String ohmsString) {
+    	String firstBand, secondBand, thirdBand;
+    	int firstBand1, secondBand1, thirdBand1;
+    	String ohmString = "";
+    	
+    	int i = 0;
+    	int ohms;
+    	 String[] colors = {"black", "brown", "red", "orange", "yellow", "green", "blue", "violet", "gray", "white"};
+    	 //black: 0, brown: 1, red: 2, orange: 3, yellow: 4, green: 5, blue: 6, violet: 7, gray: 8, white: 9
+    	 
+    	 Scanner sc1 = new Scanner(ohmsString);//scanner to read set the count to the number of words
+    	 String[] colorsin = new String[2];//an array of the inputted number
+    	 int[] numbers = new int[3];//an array of the numbers
+    	 
+    	 while (sc1.hasNext()) {
+    		 colorsin[i] = sc1.next();
+    		 i++;
+    	 }
+    	 
+    	 String numString = colorsin[0].replaceAll("[^0-9.]", "");
+    	 int num = Integer.parseInt(numString);
+    	 
+    	 if (colorsin[0].contains("k")) {
+    		 
+    		 
+    		 int zeroes = 0;
+    				 while(num%10 == 0 && num != 0) {
+    				   zeroes++;
+    				   num /= 10;
+    				 }
+    	    		 if (zeroes > 0) {
+    	    			 thirdBand = colors[zeroes + 2];
+    	        		 }
+    	        		 else {
+    	        			 thirdBand = colors[zeroes];
+    	        		 }
+    	    secondBand1 = num % 10;
+    	    firstBand1 = (num - secondBand1) / 10;
+    		firstBand = colors[firstBand1];
+    		secondBand = colors[secondBand1];
+    		
+    		ohmString = firstBand + " " + secondBand + " " + thirdBand + " gold";
+    	 }
+    	 
+    	 else if (colorsin[0].contains("M")) {
+    		 
+    		 int zeroes = 0;
+    				 while(num%10 == 0 && num != 0) {
+    				   zeroes++;
+    				   num /= 10;
+    				 }
+    	    		 if (zeroes > 0) {
+    	    			 thirdBand = colors[zeroes + 5];
+    	        		 }
+    	        		 else {
+    	        			 thirdBand = colors[zeroes];
+    	        		 }
+    	    secondBand1 = num % 10;
+    	    firstBand1 = (num - secondBand1) / 10;
+			 firstBand = colors[firstBand1];
+			 secondBand = colors[secondBand1];
+    		
+    		ohmString = firstBand + " " + secondBand + " " + thirdBand + " gold";
+    	 }
+    	 
+    	 else {
+    		 	int zeroes = 0;
+    		 	while(num%10 == 0 && num != 0) {
+    		 		zeroes++;
+    		 		num /= 10;
+    		 	}
+    		 if (zeroes > 0) {
+			 thirdBand = colors[zeroes - 1];
+    		 }
+    		 else {
+    			 thirdBand = colors[zeroes];
+    		 }
+    		 secondBand1 = num % 10;
+    		 firstBand1 = (num - secondBand1) / 10;
+			 firstBand = colors[firstBand1];
+			 secondBand = colors[secondBand1];
+			 
+			 ohmString = firstBand + " " + secondBand + " " + thirdBand + " gold";
+	
+    	 }
+    	return ohmString;
+     }
 }
