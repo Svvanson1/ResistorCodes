@@ -109,7 +109,7 @@ public class DecodeResistorColors {
     		 
     		 int zeroes = 0;
     				 while(num%10 == 0 && num != 0) {
-    				   zeroes++;
+    				   zeroes++; 
     				   num /= 10;
     				 }
     	    		 if (zeroes > 0) {
