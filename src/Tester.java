@@ -6,8 +6,11 @@ public class Tester {
 		DecodeResistorColors h = new DecodeResistorColors();
 		//System.out.println(h.decodeResistorColors("brown black black"));
 		
-		System.out.println(h.encodeResistorColors("10 ohms"));
-		System.out.println(h.encodeResistorColors("47 ohms"));
+		System.out.println(h.encodeResistorColors("330k ohms"));
+		System.out.println(h.encodeResistorColors("10k ohms"));
+		System.out.println(h.encodeResistorColors("22k ohms"));
+		System.out.println(h.encodeResistorColors("4.7k ohms"));
+
 	}
 
 }

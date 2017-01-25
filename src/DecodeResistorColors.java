@@ -67,46 +67,61 @@ public class DecodeResistorColors {
     	String ohmString = "";
     	
     	int i = 0;
-    	int ohms;
     	 String[] colors = {"black", "brown", "red", "orange", "yellow", "green", "blue", "violet", "gray", "white"};
     	 //black: 0, brown: 1, red: 2, orange: 3, yellow: 4, green: 5, blue: 6, violet: 7, gray: 8, white: 9
     	 
     	 Scanner sc1 = new Scanner(ohmsString);//scanner to read set the count to the number of words
     	 String[] colorsin = new String[2];//an array of the inputted number
-    	 int[] numbers = new int[3];//an array of the numbers
+
     	 
     	 while (sc1.hasNext()) {
     		 colorsin[i] = sc1.next();
     		 i++;
     	 }
     	 
-    	 String numString = colorsin[0].replaceAll("[^0-9.]", "");
+    	 String numString = colorsin[0].replaceAll("[^0-9]", "");
     	 int num = Integer.parseInt(numString);
     	 
     	 if (colorsin[0].contains("k")) {
-    		 
-    		 
-    		 int zeroes = 0;
-    				 while(num%10 == 0 && num != 0) {
+    		 int zeroes = 2;
+    		
+
+    		 if (num == 100) {
+    			 zeroes = zeroes + 2;
+    		 }
+    		 if (num < 10) {
+    			 num = num * 10;
+    		 }
+
+    		 int num1 = num;
+    				 while(num1%10 == 0 && num1 != 0) {
     				   zeroes++;
-    				   num /= 10;
+    				   num1 /= 10;
     				 }
-    	    		 if (zeroes > 0) {
-    	    			 thirdBand = colors[zeroes + 2];
-    	        		 }
-    	        		 else {
-    	        			 thirdBand = colors[zeroes];
-    	        		 }
-    	    secondBand1 = num % 10;
-    	    firstBand1 = (num - secondBand1) / 10;
+    		int length = (int) Math.log10(num1) + 1;
+    			if (length > 1) {
+    				zeroes += length - 1;
+    			}
+    		
+    			if (num1 == 1) {
+    				num1 = num1 * 10;
+    			}
+    			
+
+    	    thirdBand = colors[zeroes];
+    	    secondBand1 = num1 % 10;
+    	    firstBand1 = (num1 - secondBand1) / 10;
     		firstBand = colors[firstBand1];
     		secondBand = colors[secondBand1];
+    		
     		
     		ohmString = firstBand + " " + secondBand + " " + thirdBand + " gold";
     	 }
     	 
     	 else if (colorsin[0].contains("M")) {
-    		 
+    		 if (num < 10) {
+    			 num = num * 10;
+    		 }
     		 int zeroes = 0;
     				 while(num%10 == 0 && num != 0) {
     				   zeroes++; 
@@ -125,6 +140,37 @@ public class DecodeResistorColors {
     		
     		ohmString = firstBand + " " + secondBand + " " + thirdBand + " gold";
     	 }
+    	 
+    	 
+    	 else if (num % 10 == 0) {
+    		 	int zeroes = 0;
+    		 	int num1 = num;
+    		 	while(num1%10 == 0 && num1 != 0) {
+    		 		zeroes++;
+    		 		num1 /= 10;
+    		 	}
+    		 thirdBand1 = zeroes - 1;
+    		 
+    		 num = num / 10;
+    		 if (num > 9) {
+    			 thirdBand1++;
+    			 secondBand1 = num % 10;
+        		 firstBand1 = (num - secondBand1) / 10;
+        		 if (zeroes > 1) {
+        			 thirdBand1--;
+        		 }
+    		 }
+    		 else {
+        		 firstBand1 = num;
+        		 secondBand1 = 0;
+    		 }
+			 firstBand = colors[firstBand1];
+			 secondBand = colors[secondBand1];
+			thirdBand = colors[thirdBand1];
+			 
+			 ohmString = firstBand + " " + secondBand + " " + thirdBand + " gold";
+    	 }
+    	 
     	 
     	 else {
     		 	int zeroes = 0;
