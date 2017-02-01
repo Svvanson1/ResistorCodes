@@ -85,6 +85,13 @@ public class DecodeResistorColors {
     	 if (colorsin[0].contains("k")) {
     		 length += 1;
     		 
+    		 if (colorsin[0].contains(".")) {
+    			 length--;
+    		 }
+    		 
+    		 if (num == 1) {
+    			 num = num * 10;
+    		 }
     		 
     		 
     		thirdBand = colors[length];
@@ -101,7 +108,19 @@ public class DecodeResistorColors {
     	 }
     	 
     	 else if (colorsin[0].contains("M")) {
-    		length += 6;
+    		length += 4;
+    		
+   		 if (colorsin[0].contains(".")) {
+			 length--;
+		 }
+   		 
+		 if (num == 1) {
+			 num = num * 10;
+		 }
+		 
+		 if (num == 2) {
+			 num = num * 10;
+		 }
     		 
     		thirdBand = colors[length];
     	    secondBand1 = num % 10;
@@ -119,7 +138,8 @@ public class DecodeResistorColors {
     	 
     	 
     	 else {
-    		 length -= 1;
+    		 length -= 2;
+    		 
     		 
     		 thirdBand = colors[length];
     		 secondBand1 = num % 10;
