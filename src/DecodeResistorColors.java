@@ -89,7 +89,7 @@ public class DecodeResistorColors {
     			 length--;
     		 }
     		 
-    		 if (num == 1) {
+    		 if (num < 9) {
     			 num = num * 10;
     		 }
     		 
@@ -114,14 +114,10 @@ public class DecodeResistorColors {
 			 length--;
 		 }
    		 
-		 if (num == 1) {
-			 num = num * 10;
-		 }
+    		 if (num < 9) {
+    			 num = num * 10;
+    		 }
 		 
-		 if (num == 2) {
-			 num = num * 10;
-		 }
-    		 
     		thirdBand = colors[length];
     	    secondBand1 = num % 10;
     	    firstBand1 = (num - secondBand1) / 10;
